@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Logo Pressure Test</title>
+  <title>Logo Stress Test</title>
 
   <style>
     body {
@@ -13,6 +13,7 @@
     }
     h2 {
       font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+      font-size: clamp(2rem, 5rem, 5rem);
     }
     .app {
       container-type: inline-size;
@@ -28,12 +29,13 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: 150px;
-      padding: 20px;
+      min-height: 200px;
+      padding: 50px;
       border: 2px dashed #aaa;
       border-radius: 10px;
       color: #666;
       cursor: pointer;
+      font-size: clamp(1rem, 4rem, 5rem);
     }
 
     .drop-zone.dragover {
@@ -154,13 +156,13 @@
 <body>
 
 <div class="app">
-  <h2>Logo Design Pressure Test</h2>
+  <h2>Logo Stress Test</h2>
 
   <div class="drop-zone" id="dropZone">
     Drop image here or click to upload
   </div>
 
-  <input type="file" id="fileInput" accept="image/*,.svg,.pdf">
+  <input type="file" id="fileInput" accept="image/*,.svg">
 
   <div id="message"></div>
 
