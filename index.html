@@ -6,12 +6,14 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Helvetica, Arial, sans-serif;
       padding: 20px;
       display: flex;
       justify-content: center;
     }
-
+    h2 {
+      font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+    }
     .app {
       container-type: inline-size;
       width: 100%;
@@ -166,15 +168,17 @@
     <div class="img-box"><span>Original</span><img></div>
     <div class="img-box"><span>Black & White</span><img class="bw"></div>
     <div class="img-box"><span>Inverted</span><img class="invert"></div>
+    <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
+    <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
+    <div class="img-box"><span>Single Color</span><img class="single-color"></div>
     <div class="img-box"><span>Blurred</span><img class="blur"></div>
     <div class="img-box"><span>Degraded Surface</span><div class="overlay-container"><img><img class="overlay" src="images/scratched-surface.png"></div></div>
     <div class="img-box"><span>Low Contrast</span><img class="contrast"></div>
+<!--    
     <div class="img-box"><span>Dark</span><img class="brightness"></div>
     <div class="img-box"><span>Sepia</span><img class="sepia"></div>
     <div class="img-box"><span>Hue Shift</span><img class="hue"></div>
-    <div class="img-box" ><span>Large scale/Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
-    <div class="img-box" ><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
-    <div class="img-box"><span>Single Color</span><img class="single-color"></div>
+  -->
   </div>
 
   <div class="buttons">
