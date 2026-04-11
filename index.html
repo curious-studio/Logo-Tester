@@ -10,10 +10,14 @@
       padding: 20px;
       display: flex;
       justify-content: center;
-    }
+      font-size: clamp(18px, 22px, 24px);
+      line-height: clamp(1.4, 1.25, 1);    
+  }
     h2 {
       font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
       font-size: clamp(3rem, 4rem, 1rem);
+      margin-top: 24px;
+      margin-bottom: 10px;
     }
     .app {
       container-type: inline-size;
@@ -21,24 +25,38 @@
       max-width: 800px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
-
+    .welcome-box {
+      container-type: inline-size;
+      display: grid;
+      grid-template-columns: 1fr 225px;
+      gap: 20px;
+    }
+    .welcome {
+      container-type: inline-size;
+      display: flex;
+      flex-direction: column;
+      row-gap: 1em;
+    }
     .drop-zone {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: 200px;
-      padding: 50px;
-      border: 2px dashed #aaa;
-      border-radius: 10px;
-      color: #666;
+      min-height: 100px;
+      padding: 75px;
+      outline: 3px dashed #aaa;
+      border-radius: 20px;
+      color: #9f9f9f;
+      background: #f1f1f1;
       cursor: pointer;
-      font-size: clamp(1rem, 2rem, 3rem);
+      font-size: clamp(1rem, 1.5rem, 3rem);
+      outline-offset: 6px;
+      transition: .5s;
     }
 
-    .drop-zone.dragover {
+    .drop-zone.dragover, .drop-zone:hover {
       border-color: #333;
       background: #f0f0f0;
       color: #000;
@@ -49,7 +67,7 @@
     }
 
     #message {
-      color: red;
+      color: #c96863;
       font-weight: bold;
     }
 
@@ -75,7 +93,7 @@
       font-size: 14px;
       text-align: left;
       text-transform: uppercase;
-      letter-spacing: 0.5;
+      letter-spacing: 1px;
     }
 
     .img-box img {
@@ -110,8 +128,8 @@
       transform: scale(2.5);
       transform-origin: center;
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: calc(100% * .5);
+      left: calc(100% * .5);
       width: 100%;
       height: 100%;
     }
@@ -159,16 +177,18 @@
 <body>
 
 <div class="app">
-  <h2>Logo Stress Test</h2>
-  <p>Upload your logo to see how it holds up under a variety of conditions. This tool is designed to help you identify potential weaknesses in your logo design. Is it legible at a small scale? Is the shape interesting even when it's blurry? Does it work in a single color application?</p>
-  <div class="drop-zone" id="dropZone">
-    Drop image here or click to upload
-  </div>
+  <div class="welcome-box">
+    <div class="welcome">
+      <h2>Logo Stress Test</h2>
+      <p>Does your logo design work under less than ideal conditions? This tool is designed to help you identify potential weaknesses in your design. Is your logo legible at a small scale? Is the shape interesting even when it's blurry? Does it work in a single color application?</p>
+    </div>
+    <div class="drop-zone" id="dropZone">
+      Drop your logo here or click to upload
+    </div>
 
-  <input type="file" id="fileInput" accept="image/*,.svg">
+    <input type="file" id="fileInput" accept="image/*,.svg">
 
-  <div id="message"></div>
-
+      <div id="message"></div>  </div>
   <div class="grid" id="grid" style="display:none;">
     <div class="img-box"><span>Original</span><img></div>
     <div class="img-box"><span>Black & White</span><img class="bw"></div>
