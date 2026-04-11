@@ -94,11 +94,12 @@
     /* Filters */
     .bw {filter: grayscale(100%) contrast(10);}
     .blur {filter: blur(8px);}
-    .invert { filter: invert(100%); }
-    .contrast {filter: contrast(5%);background-color: #555;}
+    .invert {filter: grayscale(100%) contrast(10) invert(100%); }
+    .contrast {filter: contrast(5%); background-color: #555;}
     .brightness {filter: brightness(30%);}
     .sepia { filter: sepia(100%); }
     .hue {filter: brightness(0.1) contrast(.30);}
+    .grad-map { filter: grayscale(100%) contrast(10) url(#grad-map); }
     .single-color {filter: saturate(0%) brightness(55%) contrast(1000%);}    
     .small-scale {
       transform: scale(0.25);
@@ -107,7 +108,7 @@
     .pixelate {
       image-rendering: pixelated;
       transform: scale(2.5);
-      transform-origin: bottom;
+      transform-origin: center;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -172,18 +173,37 @@
     <div class="img-box"><span>Original</span><img></div>
     <div class="img-box"><span>Black & White</span><img class="bw"></div>
     <div class="img-box"><span>Inverted</span><img class="invert"></div>
-    <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
+    <div class="img-box"><span>Single Color</span><img class="grad-map"></div>
     <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
-    <div class="img-box"><span>Single Color</span><img class="single-color"></div>
+    <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
+    <div class="img-box"><span>BW high threshold</span><img class="single-color"></div>
+    <div class="img-box"><span>Low Contrast</span><img class="contrast"></div>
     <div class="img-box"><span>Blurred</span><img class="blur"></div>
     <div class="img-box"><span>Degraded Surface</span><div class="overlay-container"><img><img class="overlay" src="images/scratched-surface.png"></div></div>
-    <div class="img-box"><span>Low Contrast</span><img class="contrast"></div>
 <!--    
     <div class="img-box"><span>Dark</span><img class="brightness"></div>
     <div class="img-box"><span>Sepia</span><img class="sepia"></div>
     <div class="img-box"><span>Hue Shift</span><img class="hue"></div>
   -->
   </div>
+
+  <svg width="0" height="0" style="position:absolute; visibility:hidden;">
+    <defs>
+      <filter id="grad-map" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values=".33 .33 .33 0 0
+              .33 .33 .33 0 0
+              .33 .33 .33 0 0
+              0 0 0 1 0" in="SourceGraphic" result="colormatrix"/>
+        <feComponentTransfer in="colormatrix" result="componentTransfer">
+            <feFuncR type="table" tableValues="0 1"/>
+          <feFuncG type="table" tableValues="0.37 1"/>
+          <feFuncB type="table" tableValues="0.86 1"/>
+          <feFuncA type="table" tableValues="0 1"/>
+        </feComponentTransfer>
+        <feBlend mode="normal" in="componentTransfer" in2="SourceGraphic" result="blend"/>
+      </filter>
+    </defs>
+  </svg>
 
   <div class="buttons">
     <button id="resetBtn">Reset</button>
