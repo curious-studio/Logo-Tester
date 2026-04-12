@@ -90,6 +90,16 @@
       height: 100%;
     }
 
+    img.drop-preview:hover {
+        opacity: 50%;
+        transition: 0.5s;
+    }
+
+    img.drop-preview {
+        opacity: 100%;
+        transition: 0.5s;
+    }
+    
     .drop-zone .drop-text {
       z-index: 1;
       padding: 1em;
@@ -275,7 +285,7 @@
   </svg>
 
   <div class="buttons">
-    <button id="resetBtn">Reset</button>
+    <button id="resetBtn" style="display:none;">Reset</button>
   </div>
 </div>
 
@@ -335,6 +345,7 @@
       dropPreview.src = reader.result;
       dropZone.classList.add('has-preview');
       grid.style.display = 'flex';
+      resetBtn.style.display = 'block';
     };
 
     reader.readAsDataURL(file);
@@ -345,6 +356,7 @@
     fileInput.value = '';
     dropPreview.src = '';
     dropZone.classList.remove('has-preview');
+    resetBtn.style.display = 'none';
     message.textContent = text;
   }
 
@@ -353,6 +365,7 @@
     fileInput.value = '';
     dropPreview.src = '';
     dropZone.classList.remove('has-preview');
+    resetBtn.style.display = 'none';
     message.textContent = '';
   });
 </script>
