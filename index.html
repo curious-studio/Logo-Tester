@@ -11,7 +11,7 @@
       display: flex;
       justify-content: center;
       font-size: clamp(18px, 22px, 24px);
-      line-height: clamp(1.4, 1.25, 1);    
+      line-height: clamp(1.4, 1.25, 1);
   }
     h2 {
       font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
@@ -30,8 +30,8 @@
     .welcome-box {
       container-type: inline-size;
       display: grid;
-      grid-template-columns: 1fr 225px;
-      gap: 20px;
+      grid-template-columns: 2fr minmax(150px, 1fr);
+      gap: 30px;
     }
     .welcome {
       container-type: inline-size;
@@ -39,13 +39,18 @@
       flex-direction: column;
       row-gap: 1em;
     }
+    .welcome h2 {
+        margin-top: 0;
+    }
+    .welcome p {
+        margin-block-start: 0;
+    }    
     .drop-zone {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       min-height: 100px;
-      padding: 75px;
       outline: 3px dashed #aaa;
       border-radius: 20px;
       color: #9f9f9f;
@@ -54,12 +59,38 @@
       font-size: clamp(1rem, 1.5rem, 3rem);
       outline-offset: 6px;
       transition: .5s;
+      margin-top: 30px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      overflow: hidden;
     }
 
     .drop-zone.dragover, .drop-zone:hover {
       border-color: #333;
       background: #f0f0f0;
       color: #000;
+    }
+
+    .drop-zone .drop-preview {
+      display: none;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    .drop-zone .drop-text {
+      z-index: 1;
+      padding: 1em;
+    }
+
+    .drop-zone.has-preview .drop-text {
+      display: none;
+    }
+
+    .drop-zone.has-preview .drop-preview {
+      display: block;
     }
 
     input[type="file"] {
@@ -85,7 +116,7 @@
       flex-direction: column;
       gap: 3px;
       overflow: hidden;
-      min-height: 200px;
+      /* min-height: 200px; */
       /* row-gap: 30px; */
     }
 
@@ -112,8 +143,8 @@
     /* Filters */
     .bw {filter: grayscale(100%) contrast(10);}
     .blur {filter: blur(8px);}
-    .invert {filter: grayscale(100%) contrast(10) invert(100%); }
-    .contrast {filter: contrast(5%); background-color: #555;}
+    .invert {filter: grayscale(0) contrast(10) invert(92%);}
+    .contrast {filter: contrast(10%);background-color: #000000;}
     .brightness {filter: brightness(30%);}
     .sepia { filter: sepia(100%); }
     .hue {filter: brightness(0.1) contrast(.30);}
@@ -183,20 +214,22 @@
       <p>Does your logo design work under less than ideal conditions? This tool is designed to help you identify potential weaknesses in your design. Is your logo legible at a small scale? Is the shape interesting even when it's blurry? Does it work in a single color application?</p>
     </div>
     <div class="drop-zone" id="dropZone">
-      Drop your logo here or click to upload
+      <span class="drop-text">Drop your logo here or click to upload</span>
+      <img class="drop-preview" alt="Logo preview">
     </div>
 
     <input type="file" id="fileInput" accept="image/*,.svg">
 
-      <div id="message"></div>  </div>
+      <div id="message"></div>  
+    </div>
   <div class="grid" id="grid" style="display:none;">
-    <div class="img-box"><span>Original</span><img></div>
+<!--    <div class="img-box"><span>Original</span><img></div> -->
     <div class="img-box"><span>Black & White</span><img class="bw"></div>
     <div class="img-box"><span>Inverted</span><img class="invert"></div>
     <div class="img-box"><span>Single Color</span><img class="grad-map"></div>
+    <div class="img-box"><span>BW high threshold</span><img class="single-color"></div>
     <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
     <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
-    <div class="img-box"><span>BW high threshold</span><img class="single-color"></div>
     <div class="img-box"><span>Low Contrast</span><img class="contrast"></div>
     <div class="img-box"><span>Blurred</span><img class="blur"></div>
     <div class="img-box"><span>Degraded Surface</span><div class="overlay-container"><img><img class="overlay" src="images/scratched-surface.png"></div></div>
@@ -236,6 +269,8 @@
   const grid = document.getElementById('grid');
   const message = document.getElementById('message');
   const resetBtn = document.getElementById('resetBtn');
+  const dropPreview = document.querySelector('.drop-preview');
+  const dropText = document.querySelector('.drop-text');
 
   const images = document.querySelectorAll('.img-box img:not(.overlay)');
 
@@ -281,6 +316,8 @@
 
     reader.onload = () => {
       images.forEach(img => img.src = reader.result);
+      dropPreview.src = reader.result;
+      dropZone.classList.add('has-preview');
       grid.style.display = 'flex';
     };
 
@@ -290,12 +327,16 @@
   function showError(text) {
     grid.style.display = 'none';
     fileInput.value = '';
+    dropPreview.src = '';
+    dropZone.classList.remove('has-preview');
     message.textContent = text;
   }
 
   resetBtn.addEventListener('click', () => {
     grid.style.display = 'none';
     fileInput.value = '';
+    dropPreview.src = '';
+    dropZone.classList.remove('has-preview');
     message.textContent = '';
   });
 </script>
