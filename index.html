@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Logo Stress Test</title>
-
+  <link rel="preload" href="/fonts/overpass.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/fonts/overpass-italic.ttf" as="font" type="font/ttf" crossorigin>
   <style>
     :root {
       --primary-color: #005EDB;
@@ -11,9 +12,20 @@
     .light {
       background: color-mix(in srgb, var(--primary-color) 80%, white); /* tint */
     }
+    @font-face {
+      font-family: 'Overpass';
+      src: url('/fonts/overpass.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Overpass Italic';
+      src: url('/fonts/overpass-italic.ttf') format('truetype');
+      font-style: italic;
+      font-display: swap;
+    }
 
     body {
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: 'Overpass', Helvetica, Arial, sans-serif;
       padding: 20px;
       display: flex;
       justify-content: center;
@@ -22,7 +34,7 @@
       color: var(--primary-color);
   }
     h2 {
-      font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+      font-family: 'Overpass', Helvetica, Arial, sans-serif;
       font-size: clamp(3rem, 4rem, 1rem);
       margin-top: 24px;
       margin-bottom: 10px;
@@ -63,10 +75,11 @@
       outline: 3px dashed var(--primary-color);
       border-radius: 20px;
       color: var(--primary-color);
-/*    background: #f1f1f1; */
+      /*    background: #f1f1f1; */
       background: color-mix(in srgb, var(--primary-color) 20%, white); /* tint */
       cursor: pointer;
-      font-size: clamp(1rem, 1.5rem, 3rem);
+      font-size: clamp(1rem, 1.25rem, 3rem);
+      font-weight: 900;
       outline-offset: 6px;
       transition: .5s;
       margin-top: 30px;
