@@ -177,7 +177,7 @@
     /* Filters */
     .bw {filter: grayscale(100%) contrast(10);}
     .blur {filter: blur(8px);}
-    .invert {filter: grayscale(0) contrast(10) invert(92%);}
+    .invert {filter: blur(1px) grayscale(100%) contrast(10) invert(100%);}
     .contrast {filter: contrast(10%);background-color: #000000;}
     .brightness {filter: brightness(30%);}
     .sepia { filter: sepia(100%); }
@@ -265,7 +265,7 @@
   <div class="grid" id="grid" style="display:none;">
 <!--    <div class="img-box"><span>Original</span><img></div> -->
     <div class="img-box"><span>Black & White</span><img class="bw"></div>
-    <div class="img-box"><span>Inverted</span><img class="invert"></div>
+    <div class="img-box"><span>Reversed</span><img class="invert"></div>
     <div class="img-box"><span>Single Color</span><img class="grad-map"></div>
     <div class="img-box"><span>BW high threshold</span><img class="single-color"></div>
     <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
