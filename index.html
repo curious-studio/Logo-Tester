@@ -61,9 +61,18 @@
       flex-direction: column;
       row-gap: 1em;
     }
+
     .welcome h2 {
         margin-top: 20px;
+        filter: blur(1.5px);
+        letter-spacing: -6px;
+        transition: .75s;
     }
+    .welcome h2:hover {
+        filter: none;
+        transition: .75s;
+        letter-spacing: -3px;
+    }    
     .welcome p {
         margin-block-start: 0;
     }    
