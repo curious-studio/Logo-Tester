@@ -13,37 +13,38 @@
 <body>
 
 <div class="app">
-  <div class="welcome-box">
+  <header class="welcome-box">
     <div class="welcome">
-      <h2>Logo Stress Test</h2>
-      <p>Does your logo design work under less than ideal conditions? This tool is designed to help you identify potential weaknesses in your design. Is your logo legible at a small scale? Is the shape interesting even when it's blurry? Does it work in a single color application?</p>
+      <h1>Logo Stress Test</h1>
+      <p>Does your logo design work under less than ideal conditions? Test it out here.</p>
     </div>
-    <div class="drop-zone" id="dropZone">
-      <span class="drop-text">Drop your logo here or click to upload</span>
-      <img class="drop-preview" alt="Logo preview">
-    </div>
-
-    <input type="file" id="fileInput" accept="image/*,.svg">
-
-      <div id="message"></div>  
-    </div>
-  <div class="grid" id="grid" style="display:none;">
+    <section class="visual-upload">
+      <label class="drop-zone" id="dropZone" for="fileInput" role="button" tabindex="0" aria-describedby="dropHint">
+        <span class="drop-text" id="dropHint">Drop your logo here <br> or click to upload</span>
+        <img class="drop-preview" alt="Logo preview">
+      </label>
+      <input type="file" id="fileInput" accept="image/*,.svg" aria-describedby="dropHint">
+      <div id="message" role="status" aria-live="polite" aria-atomic="true"></div>
+    </section>
+  </header>
+  <main>
+    <section class="grid" id="grid" aria-label="Logo preview variations" style="display:none;">
 <!--    <div class="img-box"><span>Original</span><img></div> -->
-    <div class="img-box"><span>Black & White</span><img class="bw"></div>
-    <div class="img-box"><span>Reversed</span><img class="invert"></div>
-    <div class="img-box"><span>Single Color</span><img class="grad-map"></div>
-    <div class="img-box"><span>BW high threshold</span><img class="single-color"></div>
-    <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale"></div></div>
-    <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate"></div></div>
-    <div class="img-box"><span>Low Contrast</span><img class="contrast"></div>
-    <div class="img-box"><span>Blurred</span><img class="blur"></div>
-    <div class="img-box"><span>Degraded Surface</span><div class="overlay-container"><img><img class="overlay" src="images/scratched-surface.png"></div></div>
+    <div class="img-box"><span>Black & White</span><img class="bw" alt="Logo preview"></div>
+    <div class="img-box"><span>Reversed</span><img class="invert" alt="Logo preview"></div>
+    <div class="img-box"><span>Single Color</span><img class="grad-map" alt="Logo preview"></div>
+    <div class="img-box"><span>BW high threshold</span><img class="single-color" alt="Logo preview"></div>
+    <div class="img-box"><span>Small scale</span><div class="img-wrapper"><img class="small-scale" alt="Logo preview"></div></div>
+    <div class="img-box"><span>Large scale / Partial</span><div class="img-wrapper"><img class="pixelate" alt="Logo preview"></div></div>
+    <div class="img-box"><span>Low Contrast</span><img class="contrast" alt="Logo preview"></div>
+    <div class="img-box"><span>Blurred</span><img class="blur" alt="Logo preview"></div>
+    <div class="img-box"><span>Degraded Surface</span><div class="overlay-container"><img alt="Logo preview"><img class="overlay" src="images/scratched-surface.png" alt=""></div></div>
 <!--    
     <div class="img-box"><span>Dark</span><img class="brightness"></div>
     <div class="img-box"><span>Sepia</span><img class="sepia"></div>
     <div class="img-box"><span>Hue Shift</span><img class="hue"></div>
   -->
-  </div>
+  </section>
 <!--based on https://yoksel.github.io/svg-gradient-map/#/ -->
   <svg width="0" height="0" style="position:absolute; visibility:hidden;">
     <defs>
@@ -64,11 +65,13 @@
   </svg>
 
   <div class="buttons">
-    <button id="resetBtn" style="display:none;">Reset</button>
+    <button id="resetBtn" type="button" style="display:none;">Reset</button>
   </div>
+</main>
 
   <footer class="site-footer">
-    <p>Logo Stress Test — evaluate logo clarity in different visual conditions.</p>
+    <h3>Logo Stress Test</h3>
+    <p>This tool is designed to help you identify potential weaknesses in your design. Is your logo legible at a small scale? Is the shape interesting even when it's blurry? Does it work in a single color application?</p>
     <p class="colophon">© Tim Murray, 2026</p>
   </footer>
 </div>

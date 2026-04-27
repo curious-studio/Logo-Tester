@@ -4,10 +4,16 @@ const grid = document.getElementById('grid');
 const message = document.getElementById('message');
 const resetBtn = document.getElementById('resetBtn');
 const dropPreview = document.querySelector('.drop-preview');
-const dropText = document.querySelector('.drop-text');
 const images = document.querySelectorAll('.img-box img:not(.overlay)');
 
 dropZone.addEventListener('click', () => fileInput.click());
+
+dropZone.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    fileInput.click();
+  }
+});
 
 dropZone.addEventListener('dragover', (e) => {
   e.preventDefault();
